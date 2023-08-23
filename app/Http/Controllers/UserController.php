@@ -34,7 +34,7 @@ class UserController extends Controller
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:4',
         ]);
 
         // Create the new user
@@ -67,7 +67,7 @@ class UserController extends Controller
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'nullable|string|min:8',
+            'password' => 'required|nullable|string|min:8',
         ]);
 
         $user->update([

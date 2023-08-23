@@ -10,9 +10,13 @@ class ApartementController extends Controller
 {
     public function index(Request $request)
     {
-
         $residenceID = $request->input('residence_id');
-        $apartments = Apartement::where('ResidenceID', $residenceID)->get();
+        
+        if ($residenceID) {
+            $apartments = Apartement::where('ResidenceID', $residenceID)->get();
+        } else {
+            $apartments = Apartement::all();
+        }
         
         return view('apartments.index', compact('apartments'));
     }

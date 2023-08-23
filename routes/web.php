@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 
 Auth::routes();
 
+
 Route::get('/', function () {
     return view('welcome');
 });

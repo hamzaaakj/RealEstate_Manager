@@ -1,17 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create Residence</h1>
-    <form action="{{ route('residences.store') }}" method="POST">
-        @csrf
-        <label for="ResidenceName">Residence Name:</label>
-        <input type="text" name="ResidenceName" id="ResidenceName">
-        
-        <label for="ResidenceNumber">Residence Number:</label>
-        <input type="text" name="ResidenceNumber" id="ResidenceNumber">
-        
-        <!-- Add more form fields here -->
+    <div class="container">
+        <h2>Create Residence</h2>
+        <form action="{{ route('residences.store') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="ResidenceName" class="form-label">Residence Name:</label>
+                <input type="text" name="ResidenceName" id="ResidenceName" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="ResidenceNumber" class="form-label">Residence Number:</label>
+                <input type="text" name="ResidenceNumber" id="ResidenceNumber" class="form-control">
+            </div>
+            <!-- Add more form fields here -->
 
-        <button type="submit">Create</button>
-    </form>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
 @endsection

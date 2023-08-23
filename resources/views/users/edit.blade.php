@@ -1,23 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit User</h1>
-    <form method="POST" action="{{ route('users.update', $user->id) }}">
-        @csrf
-        @method('PATCH')
+    <div class="container">
+        <h2>Edit User</h2>
+        <form method="POST" action="{{ route('users.update', $user->id) }}">
+            @csrf
+            @method('PATCH')
 
-        <label for="firstName">First Name</label>
-        <input type="text" name="firstName" value="{{ $user->firstName }}" required>
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" name="firstName" class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}" value="{{ old('firstName', $user->firstName) }}" required>
+                @if ($errors->has('firstName'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('firstName') }}
+                    </div>
+                @endif
+            </div>
 
-        <label for="lastName">Last Name</label>
-        <input type="text" name="lastName" value="{{ $user->lastName }}" required>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" name="lastName" class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }}" value="{{ old('lastName', $user->lastName) }}" required>
+                @if ($errors->has('lastName'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('lastName') }}
+                    </div>
+                @endif
+            </div>
 
-        <label for="email">Email</label>
-        <input type="email" name="email" value="{{ $user->email }}" required>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email', $user->email) }}" required>
+                @if ($errors->has('email'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('email') }}
+                    </div>
+                @endif
+            </div>
 
-        <label for="password">Password</label>
-        <input type="password" name="password">
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}">
+                @if ($errors->has('password'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('password') }}
+                    </div>
+                @endif
+            </div>
 
-        <button type="submit">Update User</button>
-    </form>
+            <button type="submit" class="btn btn-primary">Update User</button>
+        </form>
+    </div>
 @endsection
