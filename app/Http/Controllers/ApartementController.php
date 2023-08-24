@@ -9,29 +9,30 @@ use App\Models\Residence;
 class ApartementController extends Controller
 {
     public function index(Request $request)
-{
-    $residenceID = $request->input('residence_id');
-    $search = $request->input('search');
-    $status = $request->input('status'); // Get the value of the 'status' dropdown
-
-    $query = Apartement::query();
-
-    if ($residenceID) {
-        $query->where('ResidenceID', $residenceID);
+    {
+        $residenceID = $request->input('residence_id');
+        $search = $request->input('search');
+        $status = $request->input('status');
+    
+        $query = Apartement::query();
+    
+        if ($residenceID) {
+            $query->where('ResidenceID', $residenceID);
+        }
+    
+        if ($search) {
+            $query->where('ApartmentsNumber', 'LIKE', '%' . $search . '%');
+        }
+    
+        if ($status) {
+            $query->where('Status', $status);
+        }
+    
+        $apartments = $query->paginate(10);
+    
+        return view('apartments.index', compact('apartments', 'residenceID'));
     }
-
-    if ($search) {
-        $query->where('ApartmentsNumber', 'LIKE', '%' . $search . '%');
-    }
-
-    if ($status) {
-        $query->where('Status', $status); // Add a filter based on selected status
-    }
-
-    $apartments = $query->get();
-    $apartments = $query->paginate(10); // Number of apartments per page
-    return view('apartments.index', compact('apartments'));
-}
+    
 
     
     

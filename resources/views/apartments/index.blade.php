@@ -18,9 +18,11 @@
                         <option value="Sold">Sold</option>
                         <option value="Reserved">Reserved</option>
                     </select>
-                    
+                    <input type="hidden" name="residence_id" value="{{ $residenceID }}">
+                    <button type="submit" class="btn btn-primary btn-sm ms-2">Search</button>
                     <a href="{{ route('apartments.index') }}" class="btn btn-secondary btn-sm ms-2">Clear</a>
                 </form>
+                
             </div>
             
             <div class="col-md-6 mb-4 text-end">
