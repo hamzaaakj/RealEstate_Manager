@@ -19,8 +19,7 @@
                         <option value="Reserved">Reserved</option>
                     </select>
                     <input type="hidden" name="residence_id" value="{{ $residenceID }}">
-                    <button type="submit" class="btn btn-primary btn-sm ms-2">Search</button>
-                    <a href="{{ route('apartments.index') }}" class="btn btn-secondary btn-sm ms-2">Clear</a>
+                    <a href="{{ route('apartments.index')  }}" class="btn btn-secondary btn-sm ms-2">Clear</a>
                 </form>
                 
             </div>
@@ -37,8 +36,8 @@
             @foreach($apartments as $apartment)
                 <div class="col-md-4 mb-4">
                     <div class="card">
+                        <div class="card-header no-border"><h5 class="card-title">Apartment Number: {{ $apartment->ApartmentsNumber }}</h5></div>
                         <div class="card-body">
-                            <h5 class="card-title">Apartment Number: {{ $apartment->ApartmentsNumber }}</h5>
                             <p class="card-text">
                                 @if ($apartment->residence)
                                     Residence Name: {{ $apartment->residence->ResidenceName }}<br>
@@ -61,14 +60,6 @@
 
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('apartments.show', ['apartment' => $apartment->ApartmentsID]) }}" class="btn btn-primary">Show</a>
-                                @if(auth()->user()->is_admin === 1)
-                                    <a href="{{ route('apartments.edit', ['apartment' => $apartment->ApartmentsID]) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('apartments.destroy', ['apartment' => $apartment->ApartmentsID]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                @endif
                             </div>
                         </div>
                     </div>

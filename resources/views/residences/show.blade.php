@@ -9,12 +9,15 @@
         <!-- Display more fields here -->
 
         <div class="mt-4">
-            <a href="{{ route('residences.edit', $residence->ResidenceID) }}" class="btn btn-primary">Edit</a>
+            @if(auth()->user()->is_admin === 1)
+            <a href="{{ route('residences.edit', $residence->ResidenceID) }}" class="btn btn-primary btn-sm ms-2">Edit</a>
             <form action="{{ route('residences.destroy', $residence->ResidenceID) }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger btn-sm ms-2">Delete</button>
             </form>
+            @endif
+            <a href="{{ route('residences.index') }}" class="btn btn-secondary btn-sm ms-2">Go back</a>
         </div>
     </div>
 @endsection

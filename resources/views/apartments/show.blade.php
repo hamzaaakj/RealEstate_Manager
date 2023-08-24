@@ -19,16 +19,16 @@
         @endif</p>
         
         <!-- Display more fields here -->
-
-        @if(auth()->user()->is_admin === 1)
         <div class="mt-3">
-            <a href="{{ route('apartments.edit', $apartment->ApartmentsID) }}" class="btn btn-primary">Edit</a>
+            @if(auth()->user()->is_admin === 1)
+            <a href="{{ route('apartments.edit', $apartment->ApartmentsID) }}" class="btn btn-primary btn-sm ms-2">Edit</a>
             <form action="{{ route('apartments.destroy', $apartment->ApartmentsID) }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this apartment?')">Delete</button>
+                <button type="submit" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Are you sure you want to delete this apartment?')">Delete</button>
             </form>
+            @endif
+            <a href="{{ route('apartments.index') }}" class="btn btn-secondary btn-sm ms-2">Go back</a>
         </div>
-        @endif
     </div>
 @endsection
