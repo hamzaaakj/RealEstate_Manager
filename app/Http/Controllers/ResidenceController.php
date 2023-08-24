@@ -7,11 +7,21 @@ use App\Models\Residence;
 
 class ResidenceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $residences = Residence::withCount('apartments')->get();
+        $search = $request->input('search');
+    
+        $query = Residence::query();
+    
+        if ($search) {
+            $query->where('ResidenceName', 'LIKE', '%' . $search . '%');
+        }
+    
+        $residences = $query->withCount('apartments')->get();
+    
         return view('residences.index', compact('residences'));
     }
+    
 
     public function create()
     {

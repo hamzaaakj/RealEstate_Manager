@@ -50,24 +50,30 @@ class UserController extends Controller
     }
     public function edit($id)
     {
-        if (Gate::denies('is-admin')) {
+        $user = User::findOrFail($id);
+
+        // Check if the user has admin role and is_admin is not 1
+        if (Gate::denies('is-admin') || ($user->is_admin === 1)) {
             abort(403, 'Unauthorized');
         }
-        $user = User::findOrFail($id);
+
         return view('users.edit', compact('user'));
     }
+
     public function update(Request $request, $id)
     {
-        if (Gate::denies('is-admin')) {
+        $user = User::findOrFail($id);
+
+        // Check if the user has admin role and is_admin is not 1
+        if (Gate::denies('is-admin') || ($user->is_admin === 1)) {
             abort(403, 'Unauthorized');
         }
-        $user = User::findOrFail($id);
 
         $validatedData = $request->validate([
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'required|nullable|string|min:8',
+            'password' => 'nullable|string|min:8',
         ]);
 
         $user->update([
@@ -83,6 +89,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+
+        // Check if the user has admin role and is_admin is not 1
+        if (Gate::denies('is-admin') || ($user->is_admin === 1)) {
+            abort(403, 'Unauthorized');
+        }
+
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');

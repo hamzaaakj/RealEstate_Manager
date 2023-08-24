@@ -29,7 +29,7 @@ class ApartementController extends Controller
     }
 
     $apartments = $query->get();
-
+    $apartments = $query->paginate(10); // Number of apartments per page
     return view('apartments.index', compact('apartments'));
 }
 

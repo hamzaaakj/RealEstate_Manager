@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <h1>Apartments List</h1>
 
@@ -17,6 +18,7 @@
                         <option value="Sold">Sold</option>
                         <option value="Reserved">Reserved</option>
                     </select>
+                    
                     <a href="{{ route('apartments.index') }}" class="btn btn-secondary btn-sm ms-2">Clear</a>
                 </form>
             </div>
@@ -41,6 +43,7 @@
                                 @endif
                                 Size (sqm): {{ $apartment->SizeParSquareMeter }}<br>
                                 Price per sqm: {{ $apartment->PriceParSquareMeter }}<br>
+                                Total Price: {{ $apartment->TotalPrice }}<br>
                                 Status:
                                 @if ($apartment->Status === 'Available')
                                     <span class="badge bg-success">{{ $apartment->Status }}</span>

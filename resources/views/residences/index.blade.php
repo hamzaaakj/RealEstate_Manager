@@ -2,9 +2,22 @@
 
 @section('content')
     <h1>Residences List</h1>
-    @if(auth()->user()->is_admin === 1)
-    <a href="{{ route('residences.create') }}" class="btn btn-primary">Add Residence</a>
-    @endif
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <!-- Search Bar -->
+            <form id="searchForm" action="{{ route('residences.index') }}" method="GET" class="d-flex align-items-center">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control form-control-sm" placeholder="Search by residence name">
+                </div>
+                <a href="{{ route('residences.index') }}" class="btn btn-secondary btn-sm ms-2">Clear</a>
+            </form>
+        </div>
+        <div class="col-md-6 mb-4 text-end">
+            @if(auth()->user()->is_admin === 1)
+            <a href="{{ route('residences.create') }}" class="btn btn-primary">Add Residence</a>
+            @endif
+        </div>
+    </div>
     <div class="row">
         @foreach($residences as $residence)
             <div class="col-md-4 mb-4">
@@ -32,5 +45,14 @@
             </div>
         @endforeach
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#searchForm input').on('change', function () {
+            $('#searchForm').submit();
+        });
+    });
+</script>
+    
     
 @endsection
