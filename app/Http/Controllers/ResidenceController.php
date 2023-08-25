@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Residence;
+use App\Models\User;
+use App\Models\Apartement;
 
 class ResidenceController extends Controller
 {
@@ -69,4 +71,16 @@ class ResidenceController extends Controller
         $residence->delete();
         return redirect()->route('residences.index')->with('success', 'Residence deleted successfully.');
     }
+    public function countResidencesAndApartments()
+{
+    $residenceCount = Residence::count();
+    $apartmentCount = Apartement::count();
+    $userCount = User::where('is_admin', 0)->count();
+
+    $soldApartmentsCount = Apartement::where('Status', 'Sold')->count();
+    $availableApartmentsCount = Apartement::where('Status', 'Available')->count();
+    $ReservedApartmentsCount = Apartement::where('Status', 'Reserved')->count();
+
+    return view('dashboard', compact('residenceCount', 'apartmentCount', 'userCount', 'soldApartmentsCount', 'availableApartmentsCount','ReservedApartmentsCount'));
+}
 }

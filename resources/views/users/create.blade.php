@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
+
     <div class="container">
         <h2>Create New User</h2>
         

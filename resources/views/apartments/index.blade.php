@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<br>
     <div class="container">
         <h1>Apartments List</h1>
 
@@ -26,7 +26,7 @@
             
             <div class="col-md-6 mb-4 text-end">
                 @if(auth()->user()->is_admin === 1)
-                    <a href="{{ route('apartments.create') }}" class="btn btn-primary">Add Apartment</a>
+                    <a href="{{ route('apartments.create') }}" class="btn btn-primary"><div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div></a>
                 @endif
             </div>
         </div>

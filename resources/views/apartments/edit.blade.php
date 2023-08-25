@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
+
     <div class="container">
         <h2>Edit Apartment</h2>
         <form action="{{ route('apartments.update', $apartment->ApartmentsID) }}" method="POST">

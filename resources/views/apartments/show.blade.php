@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
+
     <div class="container">
         <h2>Apartment Details</h2>
         <p><strong>Apartment Number:</strong> {{ $apartment->ApartmentsNumber }}</p>
@@ -21,11 +23,11 @@
         <!-- Display more fields here -->
         <div class="mt-3">
             @if(auth()->user()->is_admin === 1)
-            <a href="{{ route('apartments.edit', $apartment->ApartmentsID) }}" class="btn btn-primary btn-sm ms-2">Edit</a>
+            <a href="{{ route('apartments.edit', $apartment->ApartmentsID) }}" class="btn btn-primary btn-sm ms-2"><i class="fa-regular fa-pen-to-square"></i></a>
             <form action="{{ route('apartments.destroy', $apartment->ApartmentsID) }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Are you sure you want to delete this apartment?')">Delete</button>
+                <button type="submit" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Are you sure you want to delete this apartment?')"><i class="fa-solid fa-trash-can"></i></button>
             </form>
             @endif
             <a href="{{ route('apartments.index') }}" class="btn btn-secondary btn-sm ms-2">Go back</a>

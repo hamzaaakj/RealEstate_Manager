@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
+
     <div class="container">
         <h2>List of Users</h2>
         
@@ -23,11 +25,11 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             @if(auth()->user()->is_admin === 1 && $user->is_admin !== 1)
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-pen"></i></a>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm ms-2">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm ms-2"><i class="fa-solid fa-user-slash"></i></button>
                             </form>
                             @endif
                         </td>

@@ -21,6 +21,7 @@ Route::middleware(['auth','admin'])->group(function () {
     // ... other routes
     Route::resource('users', UserController::class);
     Route::get('residences/{residence_id}/apartments', 'ApartementController@index')->name('apartments.index.by_residence');
+    Route::get('/dashboard', [ResidenceController::class, 'countResidencesAndApartments'])->name('dashboard');
 });
 Route::middleware(['auth'])->group(function () {
     Route::resource('residences', ResidenceController::class);

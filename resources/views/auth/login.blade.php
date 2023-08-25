@@ -12,40 +12,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <!-- Add your custom CSS for styling here -->
     <style>
-        /* body {
-            background-color: #f8f9fa;
-        }
-    
-        .login-container {
-            max-width: 400px;
-            margin: 0 auto;
-            margin-top: 100px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-    
-        .login-container h2 {
-            margin-bottom: 20px;
-        }
-    
-        .login-container label {
-            font-weight: bold;
-        }
-    
-        .login-container input {
-            margin-bottom: 20px;
-        }
-    
-        .login-container button {
-            background-color: #007bff;
-            color: #fff;
-        }
-    
-        .login-container button:hover {
-            background-color: #0056b3;
-        } */
         /* Importing fonts from Google */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -187,9 +153,11 @@ body {
         </div>
     </div> --}}
     <div class="wrapper">
-        <div class="logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4o1CFN1ShnKm9s-9_pz0TaFBBnTsZO1tjVhXZlz4C5IS0cR4&s" alt="">
-        </div>
+        <a href="/login">
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4o1CFN1ShnKm9s-9_pz0TaFBBnTsZO1tjVhXZlz4C5IS0cR4&s" alt="">
+            </div>
+        </a>
         <div class="text-center mt-4 name">
             Real Estate Manager
         </div>

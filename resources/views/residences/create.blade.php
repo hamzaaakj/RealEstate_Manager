@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
+
     <div class="container">
         <h2>Create Residence</h2>
         <form action="{{ route('residences.store') }}" method="POST">
