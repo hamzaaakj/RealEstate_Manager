@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
-
-    <div class="container">
+<div class="container">
         <h2>Create New User</h2>
         
         <form method="POST" action="{{ route('users.store') }}">

@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
-
     <div class="container">
         <h2>Create Apartment</h2>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
         <form action="{{ route('apartments.store') }}" method="POST">
             @csrf
             <div class="mb-3">

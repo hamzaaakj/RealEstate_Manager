@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Residence;
 use App\Models\User;
@@ -18,8 +19,8 @@ class ResidenceController extends Controller
         if ($search) {
             $query->where('ResidenceName', 'LIKE', '%' . $search . '%');
         }
-    
         $residences = $query->withCount('apartments')->get();
+        $residences = $query->paginate(9); // Number of apartments per page
     
         return view('residences.index', compact('residences'));
     }
@@ -42,7 +43,14 @@ class ResidenceController extends Controller
         if (Gate::denies('is-admin')) {
             abort(403, 'Unauthorized');
         }
-        Residence::create($request->all());
+        $request->validate([
+            'ResidenceName' => 'required|string|max:255',
+            'ResidenceNumber' => 'required|string|max:255',
+        ]);
+        Residence::create([
+            'ResidenceName' => $request->input('ResidenceName'),
+            'ResidenceNumber' => $request->input('ResidenceNumber'),
+        ]);
         return redirect()->route('residences.index')->with('success', 'Residence created successfully.');
     }
 
@@ -59,7 +67,14 @@ class ResidenceController extends Controller
         if (Gate::denies('is-admin')) {
             abort(403, 'Unauthorized');
         }
-        $residence->update($request->all());
+        $request->validate([
+            'ResidenceName' => 'required|string|max:255',
+            'ResidenceNumber' => 'required|string|max:255',
+        ]);
+        $residence->update([
+            'ResidenceName' => $request->input('ResidenceName'),
+            'ResidenceNumber' => $request->input('ResidenceNumber'),
+        ]);
         return redirect()->route('residences.index')->with('success', 'Residence updated successfully.');
     }
 

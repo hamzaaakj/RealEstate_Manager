@@ -1,15 +1,51 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="{{ auth()->user()->is_admin == 1 ? route('dashboard') : route('residences.index') }}"><i class="fa fa-home" aria-hidden="true"></i></a>
+<!-- resources/views/layouts/app.blade.php -->
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary custom-bg-gray">
+       <!-- Sidebar Toggle-->
+       <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar-->
+       @if(auth()->user()->is_admin === 1)
+       <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown ml-md-2">
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" id="notificationsDropdown" href="/notifications" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge bg-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
+                </a>
+                <div class="dropdown-menu left" aria-labelledby="notificationsDropdown">
+                    @foreach(auth()->user()->unreadNotifications as $notification)
+                    @php
+                        $data = $notification->data;
+                        $reservationId = $data['reservation_id'];
+                        $order = \App\Models\Order::find($reservationId);
+                        $apartment = $order->apartment;
+                        $apartmentNumber = $apartment->ApartmentsNumber;
+                    @endphp
+                    <a class="dropdown-item notification-item" href="/orders/{{ $reservationId }}" data-notification-id="{{ $notification->id }}">
+                        {{ $data['message'] }}. Apartment Number: {{ $apartmentNumber }}
+                    </a>
+                    @endforeach
+                </div>
+            </div>
             
-        </nav>
+        </li>
+
+           <!-- Add the avatar div inside the navbar-nav ul -->
+<li class="nav-item ml-md-2 dropdown">
+        <img src="{{ asset('images/admin.png') }}" alt="Avatar" class="avatar-img">
+</li>
+       </ul>
+   @endif
+   
+   
+    
+  
+</nav>
+
+
+        <br>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordi  on sb-sidenav-primary" id="sidenavAccordion">
+                <nav class="sb-sidenav accordi on sb-sidenav-primary custom-bg-gray" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             @can('is-admin')
@@ -61,35 +97,44 @@
                                 Create New Commercial
                             </a>
                             @endcan
-                          
-                        
-                         <!-- Authentication Links -->
-                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li >
-                                <a  href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="text-center mt-4">
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out"></i>
-                                          {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                                @endguest
-                            </li>
-                            
+                            <div class="sb-sidenav-menu-heading">Customers</div>
+                            <a class="nav-link" href="{{ route('clients.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users" aria-hidden="true"></i></div>
+                                List Clients
+                            </a>  
+                            <div class="sb-sidenav-menu-heading">Orders</div>
+                            <a class="nav-link" href="{{ route('orders.index') }}">
+                                <div class="sb-nav-link-icon"><i class="far fa-handshake" aria-hidden="true"></i></div>
+                                List Orders
+                            </a>  
                         </div>
+                    </div>
+                    <!-- Authentication Links -->
+                    <div class="nav">
+                        @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li >
+                            <a  href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div class="text-center mt-4">
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out"></i>
+                                      {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                            @endguest
+                        </li>
                     </div>
                    
                 </nav>

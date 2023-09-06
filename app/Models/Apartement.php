@@ -17,4 +17,8 @@ class Apartement extends Model
     {
         return $this->belongsTo(Residence::class, 'ResidenceID');
     }
+    public function reservations()
+{
+    return $this->hasMany(Reserved::class, 'ApartmentsID', 'ApartmentsID');
+}
 }

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\DatabaseNotification;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function reservations()
+{
+    return $this->hasMany(Reserved::class, 'commercial', 'id');
+}
+public function notifications()
+    {
+        return $this->hasMany(DatabaseNotification::class, 'notifiable_id')->orderBy('created_at', 'desc');;
+    }
+
+        
 }

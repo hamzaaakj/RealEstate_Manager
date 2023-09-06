@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
-
-    <div class="container">
+ <div class="container">
         <h2>List of Users</h2>
         
         <table class="table table-striped">

@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
-    <div class="container">
+<div class="container">
         <h2>Residence Details</h2>
         <p><strong>Residence Name:</strong> {{ $residence->ResidenceName }}</p>
         <p><strong>Residence Number:</strong> {{ $residence->ResidenceNumber }}</p>

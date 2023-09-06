@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
-    <h1>Residences List</h1>
+<h1>Residences List</h1>
+<div class="container">
     <div class="row">
         <div class="col-md-6 mb-4">
             <!-- Search Bar -->
@@ -43,6 +43,44 @@
             </div>
         @endforeach
     </div>
+</div>
+    <!-- Pagination -->
+<nav aria-label="Page navigation" class="pagination-container">
+    <ul class="pagination justify-content-center">
+        @if ($residences->onFirstPage())
+            <li class="page-item disabled">
+                <span class="page-link" aria-hidden="true">&laquo; Previous</span>
+            </li>
+        @else
+            <li class="page-item">
+                <a class="page-link" href="{{ $residences->previousPageUrl() }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo; Précédent</span>
+                </a>
+            </li>
+        @endif
+        
+        @for ($i = 1; $i <= $residences->lastPage(); $i++)
+            <li class="page-item {{ $i == $residences->currentPage() ? 'active' : '' }}">
+                <a class="page-link" href="{{ $residences->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+        
+        @if ($residences->hasMorePages())
+            <li class="page-item">
+                <a class="page-link" href="{{ $residences->nextPageUrl() }}" aria-label="Next">
+                    <span aria-hidden="true">Suivant &raquo;</span>
+                </a>
+            </li>
+        @else
+            <li class="page-item disabled">
+                <span class="page-link" aria-hidden="true">Next &raquo;</span>
+            </li>
+        @endif
+    </ul>
+</nav>
+<!-- End Pagination -->
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {

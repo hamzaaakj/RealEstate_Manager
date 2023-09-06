@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
-
-    <div class="container">
+ <div class="container">
         <h2>Edit Residence</h2>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
         <form action="{{ route('residences.update', $residence->ResidenceID) }}" method="POST">
             @csrf
             @method('PUT')

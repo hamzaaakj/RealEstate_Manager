@@ -74,10 +74,10 @@ body {
 }
 
 .wrapper .form-field {
+    border:1px solid rgb(103, 103, 103);
     padding-left: 10px;
     margin-bottom: 20px;
     border-radius: 20px;
-    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
 }
 
 .wrapper .form-field .fas {
@@ -88,7 +88,6 @@ body {
     box-shadow: none;
     width: 100%;
     height: 40px;
-    background-color: #03A9F4;
     color: #fff;
     border-radius: 25px;
     box-shadow: 3px 3px 3px #b1b1b1,
@@ -119,39 +118,6 @@ body {
     </style>
 </head>
 <body>
-    {{-- <div class="container">
-        <div class="login-container">
-            <h2 class="text-center">Login</h2>
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                @if($errors->has('email') || $errors->has('password'))
-                    <div class="alert alert-danger">
-                        Incorrect email or password. Please try again.
-                    </div>
-                @endif
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                </div>
-    
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password">
-                </div>
-    
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                    <label class="form-check-label" for="remember">Remember Me</label>
-                </div>
-    
-                <button type="submit" class="btn btn-block">Login</button>
-    
-                @if (Route::has('password.request'))
-                    <a class="btn btn-link mt-3" href="{{ route('password.request') }}">Forgot Your Password?</a>
-                @endif
-            </form>
-        </div>
-    </div> --}}
     <div class="wrapper">
         <a href="/login">
             <div class="logo">
@@ -163,11 +129,14 @@ body {
         </div>
         <form method="POST" action="{{ route('login') }}" class="p-3 mt-3">
             @csrf
-            @if($errors->has('email') || $errors->has('password'))
+
+
+            @if(session('error'))
             <div class="alert alert-danger">
-                Incorrect email or password. Please try again.
+                {{ session('error') }}
             </div>
         @endif
+        
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
                 <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email" >
@@ -176,7 +145,7 @@ body {
                 <span class="fas fa-key"></span>
                 <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password">
             </div>
-            <button type="submit" class="btn mt-3">Login</button>
+            <button type="submit" class="btn mt-3 bg-primary">Login</button>
         </form>
         <div class="text-center fs-6">
             @if (Route::has('password.request'))

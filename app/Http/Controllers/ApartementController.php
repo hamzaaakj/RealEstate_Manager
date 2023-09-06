@@ -28,7 +28,7 @@ class ApartementController extends Controller
             $query->where('Status', $status);
         }
     
-        $apartments = $query->paginate(10);
+        $apartments = $query->paginate(9); // Number of apartments per page
     
         return view('apartments.index', compact('apartments', 'residenceID'));
     }
@@ -55,7 +55,23 @@ class ApartementController extends Controller
         if (Gate::denies('is-admin')) {
             abort(403, 'Unauthorized');
         }
-        Apartement::create($request->all());
+        $request->validate([
+            'ApartmentsNumber' => 'required',
+            'SizeParSquareMeter' => 'max:255',
+            'PriceParSquareMeter' => 'required',
+            'TotalPrice' => 'required',
+            'Status' => 'required|in:Available,Sold,Reserved',
+            'ResidenceID' => 'required|exists:residences,ResidenceID'
+        ]);
+        
+        $apartment = new Apartement();
+        $apartment->ApartmentsNumber = $request->input('ApartmentsNumber');
+        $apartment->SizeParSquareMeter = $request->input('SizeParSquareMeter');
+        $apartment->PriceParSquareMeter = $request->input('PriceParSquareMeter');
+        $apartment->TotalPrice = $request->input('TotalPrice');
+        $apartment->Status = $request->input('Status');
+        $apartment->ResidenceID = $request->input('ResidenceID');
+        $apartment->save();
         return redirect()->route('apartments.index')->with('success', 'Apartment created successfully.');
     }
 
@@ -70,10 +86,22 @@ class ApartementController extends Controller
 
     public function update(Request $request, Apartement $apartment)
     {
-        if (Gate::denies('is-admin')) {
-            abort(403, 'Unauthorized');
-        }
-        $apartment->update($request->all());
+        $request->validate([
+            'ApartmentsNumber' => 'required',
+            'SizeParSquareMeter' => 'max:255',
+            'PriceParSquareMeter' => 'required',
+            'TotalPrice' => 'required',
+            'Status' => 'required|in:Available,Sold,Reserved',
+            'ResidenceID' => 'required|exists:residences,ResidenceID'
+        ]);
+        $apartment->ApartmentsNumber = $request->input('ApartmentsNumber');
+    $apartment->SizeParSquareMeter = $request->input('SizeParSquareMeter');
+    $apartment->PriceParSquareMeter = $request->input('PriceParSquareMeter');
+    $apartment->TotalPrice = $request->input('TotalPrice');
+    $apartment->Status = $request->input('Status');
+    $apartment->ResidenceID = $request->input('ResidenceID');
+    
+    $apartment->save();
         return redirect()->route('apartments.index')->with('success', 'Apartment updated successfully.');
     }
 

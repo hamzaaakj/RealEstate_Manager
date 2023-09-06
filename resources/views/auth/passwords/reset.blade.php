@@ -84,11 +84,12 @@ body {
 }
 
 .wrapper .form-field {
+    border:1px solid;
     padding-left: 10px;
     margin-bottom: 20px;
     border-radius: 20px;
-    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
 }
+
 
 .wrapper .form-field .fas {
     color: #555;
@@ -169,6 +170,6 @@ body {
             </span>
         @enderror
         </div>
-        <button type="submit" class="btn mt-3">  {{ __('Reset Password') }}</button>
+        <button type="submit" class="btn mt-3 bg-primary">  {{ __('Reset Password') }}</button>
     </form>
 </div>

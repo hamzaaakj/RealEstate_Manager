@@ -30,6 +30,7 @@
                 <button type="submit" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Are you sure you want to delete this apartment?')"><i class="fa-solid fa-trash-can"></i></button>
             </form>
             @endif
+            <a href="{{ route('orders.create', ['apartment_id' => $apartment->ApartmentsID]) }}" class="btn btn-success">Réserver</a>
             <a href="{{ route('apartments.index') }}" class="btn btn-secondary btn-sm ms-2">Go back</a>
         </div>
     </div>

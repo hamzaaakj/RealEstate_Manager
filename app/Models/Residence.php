@@ -17,4 +17,8 @@ class Residence extends Model
     {
         return $this->hasMany(Apartement::class, 'ResidenceID');
     }
+    public function reservations()
+    {
+        return $this->hasMany(Reserved::class, 'ResidenceID', 'ResidenceID');
+    }
 }
