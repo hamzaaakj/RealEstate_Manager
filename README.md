@@ -68,13 +68,23 @@ These instructions will help you get a copy of the project up and running on you
 
    ```bash
     php artisan db:seed --class=CreateUsersSeeder
+   
+8.Install Node.js dependencies:
 
-8. Start the development server:
+   ```bash
+    npm install
+   
+9.Build assets for development:
+
+   ```bash
+    npm run dev
+
+10. Start the development server:
 
     ```bash
      npm run dev && php artisan serve
 
-9. You can now access the site at :
+11. You can now access the site at :
 
   ```bash
    http://localhost:8000
