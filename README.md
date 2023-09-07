@@ -63,13 +63,18 @@ These instructions will help you get a copy of the project up and running on you
 
    ```bash
     php artisan migrate
+   
+7. Seed the database with initial data (including users) using the following command:
 
-7. Start the development server:
+   ```bash
+    php artisan db:seed --class=CreateUsersSeeder
+
+8. Start the development server:
 
     ```bash
      npm run dev && php artisan serve
 
-8. You can now access the site at :
+9. You can now access the site at :
 
   ```bash
    http://localhost:8000
