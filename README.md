@@ -7,60 +7,112 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Real Estate Manager
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Real Estate Manager is a Laravel-based web application designed for managing real estate properties, including residences and apartments. It offers both an admin and commercial interface, allowing users to efficiently handle property listings and client requests.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Residence Management**: Easily add, update, and delete residence properties.
 
-## Learning Laravel
+- **Apartment Management**: Create and manage apartments within each residence.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Client Requests**: Clients can submit requests for specific apartments, and these requests are tracked in a special request table.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Admin Interface**: Administrators have access to a powerful dashboard to manage properties and client requests.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Commercial Interface**: Commercial users can also add and manage property listings.
 
-## Laravel Sponsors
+## Getting Started
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.
 
-### Premium Partners
+### Prerequisites
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- [PHP](https://www.php.net/) (>=7.4)
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/) (for asset compilation)
+- [Laravel](https://laravel.com/) (>= 8.x)
+- [MySQL](https://www.mysql.com/) or [PostgreSQL](https://www.postgresql.org/)
 
-## Contributing
+### Installation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Clone the repository:
 
-## Code of Conduct
+   ```bash
+   git clone https://github.com/yourusername/real-estate-manager.git
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. Change directory to the project folder:
+    ```bash
+     cd real-estate-manager
+3. Install Composer dependencies:
 
-## Security Vulnerabilities
+    ```bash
+     composer install
+4. Create a copy of the .env.example file and configure your environment variables, including database connection settings:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+     cp .env.example .env
 
-## License
+5. Generate an application key:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+     php artisan key:generate
+
+6. Run migrations to set up the database schema:
+
+   ```bash
+    php artisan migrate
+
+7. Start the development server:
+
+    ```bash
+     npm run dev && php artisan serve
+
+8. You can now access the site at :
+
+  ```bash
+   http://localhost:8000
+
+
+### Usage
+
+Access the admin interface at /admin and log in with your admin credentials.
+
+Access the commercial interface at /commercial and log in with your commercial user credentials.
+
+Add, update, and delete residences and apartments via the interfaces.
+
+Clients can submit requests for apartments.
+
+### Contributing
+
+Contributions are welcome! If you would like to contribute to this project, please follow these guidelines:
+
+Fork the repository on GitHub.
+
+Clone your forked repository to your local machine.
+
+Create a new branch for your feature or bug fix.
+
+Make your changes and commit them with descriptive commit messages.
+
+Push your branch to your forked repository on GitHub.
+
+Create a pull request from your branch to the main repository.
+
+### License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Acknowledgments
+Laravel community and contributors for creating a powerful PHP framework.
+
+Your organization or team members for supporting and using this project.
+
+### Contact
+
+If you have any questions or need further assistance, feel free to contact us at hamzaakajjaj@gmail.com
+
+    
+
