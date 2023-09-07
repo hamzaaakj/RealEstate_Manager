@@ -10,8 +10,12 @@
             <td>{{ $reservation->id }}</td>
         </tr>
         <tr>
-            <th>token:</th>
+            <th>Jeton:</th>
             <td>{{ $reservation->client->token }} </td>
+        </tr>
+        <tr>
+            <th>Résidence</th>
+            <td>{{ $reservation->apartment->residence->ResidenceName }}</td>
         </tr>
         <tr>
             <th>Appartement :</th>
@@ -23,7 +27,11 @@
         </tr>
         <tr>
             <th>Statut :</th>
-            <td>{{ $reservation->apartment->Status }}</td>
+            <td> @if  ($reservation->apartment->Status === 'Sold')
+                                    <span class="badge bg-danger">Vendu</span>
+                                @elseif ($reservation->apartment->Status === 'Reserved')
+                                    <span class="badge bg-warning">Réservé</span>
+                                @endif</td>
         </tr>
         <tr>
             <th>Prix final :</th>
@@ -37,11 +45,11 @@
 <!-- Boutons "Supprimer" et "Éditer" -->
 @if(auth()->user()->is_admin === 1 || auth()->user()->id === $reservation->commercial)
 <div class="btn-group" role="group">
-        <a href="{{ route('orders.edit', $reservation->id) }}" class="btn btn-primary">Éditer</a>
+        <a href="{{ route('orders.edit', $reservation->id) }}" class="btn btn-primary btn-sm ms-2"><i class="fa-regular fa-pen-to-square"></i></a>
         <form action="{{ route('orders.destroy', $reservation->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+            <button type="submit" class="btn btn-danger btn-sm ms-2"><i class="fa-solid fa-trash-can"></i></button>
         </form>
     </div>
 @endif

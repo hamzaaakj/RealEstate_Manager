@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Residences List</h1>
+<h1>Liste des résidences</h1>
 <div class="container">
     <div class="row">
         <div class="col-md-6 mb-4">
             <!-- Search Bar -->
             <form id="searchForm" action="{{ route('residences.index') }}" method="GET" class="d-flex align-items-center">
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control form-control-sm" placeholder="Search by residence name">
+                    <input type="text" name="search" class="form-control form-control-sm" placeholder="Recherche par nom de résidence">
                 </div>
-                <a href="{{ route('residences.index') }}" class="btn btn-secondary btn-sm ms-2">Clear</a>
+                <a href="{{ route('residences.index') }}" class="btn btn-secondary btn-sm ms-2">Clair</a>
             </form>
         </div>
         <div class="col-md-6 mb-4 text-end">
@@ -29,13 +29,13 @@
                     <div class="card-body">
                         
                         <p class="card-text">
-                            <strong> Residence Number: </strong>{{ $residence->ResidenceNumber }}<br>
-                           <strong> Number of Apartments:</strong> {{ $residence->apartments_count }}
+                            <strong> Numéro de résidence: </strong>{{ $residence->ResidenceNumber }}<br>
+                           <strong> Nombre d'appartements: </strong> {{ $residence->apartments_count }}
                         </p>
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('apartments.index', ['residence_id' => $residence->ResidenceID]) }}" class="btn btn-primary">View Apartments</a>
+                            <a href="{{ route('apartments.index', ['residence_id' => $residence->ResidenceID]) }}" class="btn btn-primary">Voir les appartements</a>
                        
-                                <a href="{{ route('residences.show', ['residence' => $residence->ResidenceID]) }}" class="btn btn-secondary">Show</a>
+                                <a href="{{ route('residences.show', ['residence' => $residence->ResidenceID]) }}" class="btn btn-secondary">Afficher</a>
                            
                         </div>
                     </div>
@@ -49,7 +49,7 @@
     <ul class="pagination justify-content-center">
         @if ($residences->onFirstPage())
             <li class="page-item disabled">
-                <span class="page-link" aria-hidden="true">&laquo; Previous</span>
+                <span class="page-link" aria-hidden="true">&laquo; Précédent</span>
             </li>
         @else
             <li class="page-item">
@@ -73,7 +73,7 @@
             </li>
         @else
             <li class="page-item disabled">
-                <span class="page-link" aria-hidden="true">Next &raquo;</span>
+                <span class="page-link" aria-hidden="true">Suivant &raquo;</span>
             </li>
         @endif
     </ul>

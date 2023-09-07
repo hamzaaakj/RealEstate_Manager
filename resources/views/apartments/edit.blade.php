@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Edit Apartment</h2>
+        <h2>Modifier l'appartement</h2>
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -16,31 +16,31 @@
             @method('PUT')
 
             <div class="mb-3">
-                <label for="ApartmentsNumber" class="form-label">Apartment Number:</label>
+                <label for="ApartmentsNumber" class="form-label">Numéro d'appartement:</label>
                 <input type="text" name="ApartmentsNumber" id="ApartmentsNumber" value="{{ $apartment->ApartmentsNumber }}" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="SizeParSquareMeter" class="form-label">Size (sqm):</label>
+                <label for="SizeParSquareMeter" class="form-label">Taille (m²) :</label>
                 <input type="number" name="SizeParSquareMeter" id="SizeParSquareMeter" value="{{ $apartment->SizeParSquareMeter }}" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="PriceParSquareMeter" class="form-label">Price per sqm:</label>
+                <label for="PriceParSquareMeter" class="form-label">Prix ​​au m²:</label>
                 <input type="number" step="0.01" name="PriceParSquareMeter" id="PriceParSquareMeter" value="{{ $apartment->PriceParSquareMeter }}" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="TotalPrice" class="form-label">Total Price:</label>
+                <label for="TotalPrice" class="form-label">Prix ​​total:</label>
                 <input type="number" step="0.01" name="TotalPrice" id="TotalPrice" value="{{ $apartment->TotalPrice }}" class="form-control" readonly>
             </div>
 
             <div class="mb-3">
-                <label for="Status" class="form-label">Status:</label>
+                <label for="Status" class="form-label">Statut:</label>
                 <select name="Status" id="Status" class="form-control">
-                    <option value="Available" {{ $apartment->Status == 'Available' ? 'selected' : '' }}>Available</option>
-                    <option value="Sold" {{ $apartment->Status == 'Sold' ? 'selected' : '' }}>Sold</option>
-                    <option value="Reserved" {{ $apartment->Status == 'Reserved' ? 'selected' : '' }}>Reserved</option>
+                    <option value="Available" {{ $apartment->Status == 'Available' ? 'selected' : '' }}>Disponible</option>
+                    <option value="Sold" {{ $apartment->Status == 'Sold' ? 'selected' : '' }}>Vendu</option>
+                    <option value="Reserved" {{ $apartment->Status == 'Reserved' ? 'selected' : '' }}>Réservé</option>
                 </select>
             </div>
 
@@ -53,7 +53,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">MÀJ</button>
         </form>
     </div>
 

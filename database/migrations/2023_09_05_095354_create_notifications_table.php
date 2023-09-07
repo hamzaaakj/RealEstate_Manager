@@ -16,11 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('type')->default('');
-            $table->morphs('notifiable');
+            $table->string('notifiable_type')->nullable(); // Make notifiable_type nullable
+            $table->unsignedBigInteger('notifiable_id');
             $table->text('data');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
+        
     }
 
     public function down()

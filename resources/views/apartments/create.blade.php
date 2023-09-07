@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Create Apartment</h2>
+        <h2>Créer un appartement</h2>
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -14,36 +14,36 @@
         <form action="{{ route('apartments.store') }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="ApartmentsNumber" class="form-label">Apartment Number:</label>
+                <label for="ApartmentsNumber" class="form-label">Numéro d'appartement:</label>
                 <input type="text" name="ApartmentsNumber" id="ApartmentsNumber" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="SizeParSquareMeter" class="form-label">Size (sqm):</label>
+                <label for="SizeParSquareMeter" class="form-label">Taille (m²):</label>
                 <input type="number" name="SizeParSquareMeter" id="SizeParSquareMeter" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="PriceParSquareMeter" class="form-label">Price per sqm:</label>
+                <label for="PriceParSquareMeter" class="form-label">Prix ​​au m²:</label>
                 <input type="number" step="0.01" name="PriceParSquareMeter" id="PriceParSquareMeter" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="TotalPrice" class="form-label">Total Price:</label>
+                <label for="TotalPrice" class="form-label">Prix ​​total:</label>
                 <input type="number" step="0.01" name="TotalPrice" id="TotalPrice" class="form-control" readonly>
             </div>
 
             <div class="mb-3">
-                <label for="Status" class="form-label">Status:</label>
+                <label for="Status" class="form-label">Statut:</label>
                 <select name="Status" id="Status" class="form-control">
-                    <option value="Available">Available</option>
-                    <option value="Sold">Sold</option>
-                    <option value="Reserved">Reserved</option>
+                    <option value="Available">Disponible</option>
+                    <option value="Slod">Vendu</option>
+                    <option value="Reserved">Réservé</option>
                 </select>
             </div>
 
             <div class="mb-3">
-                <label for="ResidenceID" class="form-label">Residence:</label>
+                <label for="ResidenceID" class="form-label">Résidence:</label>
                 <select name="ResidenceID" id="ResidenceID" class="form-control">
                     @foreach($residences as $residence)
                         <option value="{{ $residence->ResidenceID }}">{{ $residence->ResidenceName }}</option>
@@ -51,7 +51,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Créer</button>
         </form>
     </div>
 

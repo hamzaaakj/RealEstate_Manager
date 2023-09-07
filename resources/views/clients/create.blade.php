@@ -17,11 +17,11 @@
     <form action="{{ route('clients.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="firstName" class="form-label">First Name:</label>
+            <label for="firstName" class="form-label">Prénom:</label>
             <input type="text" name="firstName" id="firstName" class="form-control">
         </div>
         <div class="mb-3">
-            <label for="lastName" class="form-label">Last Name:</label>
+            <label for="lastName" class="form-label">Nom:</label>
             <input type="text" name="lastName" id="lastName" class="form-control">
         </div>
         <div class="mb-3">
@@ -29,10 +29,10 @@
             <input type="email" name="email" id="email" class="form-control">
         </div>
         <div class="mb-3">
-            <label for="tele" class="form-label">Tele:</label>
+            <label for="tele" class="form-label">Telephone:</label>
             <input type="tel" name="tele" id="tele" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Create Client</button>
+        <button type="submit" class="btn btn-primary">Ajouter Client</button>
     </form>
 </div>
 @endsection

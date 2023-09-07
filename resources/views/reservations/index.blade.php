@@ -1,15 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <h1> <i>Liste des Orders</i></h1>
+    <form method="GET" action="{{ route('orders.index') }}" class="d-flex align-items-center">
+        <div class="form-group">
+            
+            <input type="text" name="search" id="search" class="form-control" value="{{ request('search') }}"  placeholder="recherch par Jeton">
+        </div>
+        <button type="submit" class="btn btn-primary">recherch</button>
+    </form>
+
+
+   
+</div>
     <div class="container">
-        <h1>Liste des réservations</h1>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Token</th>
+                    <th scope="col">Jeton</th>
+                    <th scope="col">Résidence</th>
                     <th scope="col">Appartement</th>
-                    <th scope="col">Residence</th>
                     <th scope="col">Commercial</th>
                  
                     <th scope="col">Prix final</th>
@@ -21,8 +33,8 @@
                     <tr>
                         <td>{{ $reservation->id }}</td>
                         <td>{{ $reservation->client->token}} </td>
-                        <td>{{ $reservation->apartment->ApartmentsNumber }}</td>
                         <td>{{ $reservation->apartment->residence->ResidenceName }}</td>
+                        <td>{{ $reservation->apartment->ApartmentsNumber }}</td>
                         <td>{{ $reservation->commerciall->firstName}}</td>
 
                        

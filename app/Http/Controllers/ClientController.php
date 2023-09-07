@@ -14,7 +14,16 @@ class ClientController extends Controller
 }
     public function index()
     {
+        $user = auth()->user(); // Get the currently logged-in user
+    
+    // Check if the user is an admin
+    if ($user->is_admin === 1) {
+        // If the user is an admin, retrieve all clients
         $clients = Client::all();
+    } else {
+        // If the user is not an admin, retrieve clients with the same commercial value as the user's ID
+        $clients = Client::where('commercial', $user->id)->get();
+    }
         return view('clients.index', compact('clients'));
     }
 

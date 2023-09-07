@@ -14,6 +14,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/9bbe65fc88.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -24,7 +25,7 @@
 }
  /* CSS for avatar positioning */
  .ml-auto {
-        margin-left: 89%; /* Pushes the avatar to the right */
+        margin-left: 76.5%; /* Pushes the avatar to the right */
     }
 
     /* Style for the avatar image */
@@ -43,6 +44,22 @@
         left: 0;
         width: 100%;
         z-index: 999; /* Ensure it's above other content */
+    }
+    .ml-auto-0 {
+        margin-left: 81%; /* Pushes the avatar to the right */
+    }
+    .avatar-img-0 {
+        width: 40px; /* Adjust the width as needed */
+        height: 40px; /* Adjust the height as needed */
+        border-radius: 50%; /* Makes it a circular avatar */
+    }
+    .small-logo {
+    width: 30px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+.ml-auto-1 {
+        margin-right: 11.2%; /* Pushes the avatar to the left */
+        margin-left: 10px;
     }
     </style>
 

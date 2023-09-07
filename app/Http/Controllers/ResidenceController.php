@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Residence;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Apartement;
 
 class ResidenceController extends Controller
@@ -86,16 +87,57 @@ class ResidenceController extends Controller
         $residence->delete();
         return redirect()->route('residences.index')->with('success', 'Residence deleted successfully.');
     }
-    public function countResidencesAndApartments()
-{
-    $residenceCount = Residence::count();
-    $apartmentCount = Apartement::count();
-    $userCount = User::where('is_admin', 0)->count();
-
-    $soldApartmentsCount = Apartement::where('Status', 'Sold')->count();
-    $availableApartmentsCount = Apartement::where('Status', 'Available')->count();
-    $ReservedApartmentsCount = Apartement::where('Status', 'Reserved')->count();
-
-    return view('dashboard', compact('residenceCount', 'apartmentCount', 'userCount', 'soldApartmentsCount', 'availableApartmentsCount','ReservedApartmentsCount'));
-}
+    public function countResidencesAndApartments(Request $request)
+    {
+        
+        $residenceCount = Residence::count();
+        $apartmentCount = Apartement::count();
+        $userCount = User::where('is_admin', 0)->count();
+    
+        $soldApartmentsCount = Apartement::where('Status', 'Sold')->count();
+        $availableApartmentsCount = Apartement::where('Status', 'Available')->count();
+        $ReservedApartmentsCount = Apartement::where('Status', 'Reserved')->count();
+        $ordersCount = Order::count();
+         // Obtenir le nombre d'appartements par résidence
+         $apartmentsPerResidence = DB::table('residences')
+         ->select('residences.ResidenceName', DB::raw('count(apartements.ApartmentsID) as ApartmentCount'))
+         ->leftJoin('apartements', 'residences.ResidenceID', '=', 'apartements.ResidenceID')
+         ->where('apartements.Status', '=', 'Sold') // Filtrer par le statut "solde"
+         ->groupBy('residences.ResidenceID', 'residences.ResidenceName')
+         ->get();
+         $filter = $request->input('filter', 'all');
+    
+         if($filter == 'day') {
+            // Filtrer pour le dernier jour
+            $date = now()->subDay(7);
+            $orders = Order::with(['apartment.residence', 'commerciall', 'client'])
+                ->where('created_at', '>=', $date)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } elseif ($filter == 'month') {
+            // Filtrer pour le dernier mois
+            $date = now()->subMonth();
+            $orders = Order::with(['apartment.residence', 'commerciall', 'client'])
+                ->where('created_at', '>=', $date)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } elseif ($filter == 'year') {
+            // Filtrer pour la dernière année
+            $date = now()->subYear();
+            $orders = Order::with(['apartment.residence', 'commerciall', 'client'])
+                ->where('created_at', '>=', $date)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } else {
+            // Afficher toutes les données si aucune option de filtre n'est sélectionnée
+            $date = now()->subDay(7);
+            $orders = Order::with(['apartment.residence', 'commerciall', 'client'])
+                ->where('created_at', '>=', $date)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+    
+     
+        return view('dashboard', compact('residenceCount', 'apartmentCount', 'userCount', 'soldApartmentsCount', 'availableApartmentsCount','ReservedApartmentsCount','apartmentsPerResidence','ordersCount','orders'));
+    }
 }

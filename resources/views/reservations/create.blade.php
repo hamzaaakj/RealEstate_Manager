@@ -5,12 +5,6 @@
 
 <form action="{{ route('orders.store') }}" method="POST">
     @csrf
-    <!DOCTYPE html>
-<html>
-<head>
-    <title>Afficher les résultats de recherche dans une balise select</title>
-</head>
-<body>
     <div class="form-group">
         <label for="client_id">Client :</label>
         <select name="client_id" id="client_id" class="form-control" size="5" required>
@@ -24,21 +18,24 @@
 <div class="form-group">
     <label for="status">Statut :</label>
     <select name="status" id="status" class="form-control" required>
-        <option value="Reserved">Reserved</option>
-        <option value="Sold">Sold</option>
+        <option value="Reserved">Réservé</option>
+        <option value="Sold">Vendu</option>
         
     </select>
 </div>
 
     <div class="form-group">
         <label for="final_price">Prix final :</label>
-        <input type="text" name="final_price" id="final_price" class="form-control" required>
+        <input type="number" name="final_price" id="final_price" class="form-control" required>
     </div>
     <div class="form-group">
         <label for="size">Details:</label>
         <textarea name="size" id="size" class="form-control" rows="3" required></textarea>
     </div>
-    <button type="submit" class="btn btn-success">Réserver</button>
+    <br>
+    <div> 
+        <button type="submit" class="btn btn-success btn-sm ms-2">Réserver</button>
+    </div>
 </form>
 
 

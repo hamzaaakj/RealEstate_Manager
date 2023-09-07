@@ -2,14 +2,14 @@
 
 @section('content')
  <div class="container">
-        <h2>List of Users</h2>
+        <h2>Liste Commercial</h2>
         
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
                     <th>Email</th>
                     <th>Actions</th>
                 </tr>

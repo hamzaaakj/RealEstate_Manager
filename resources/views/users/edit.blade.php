@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-        <h2>Edit User</h2>
+        <h2>Modifier Commercial</h2>
         <form method="POST" action="{{ route('users.update', $user->id) }}">
             @csrf
             @method('PATCH')
 
             <div class="mb-3">
-                <label for="firstName" class="form-label">First Name</label>
+                <label for="firstName" class="form-label">Prénom</label>
                 <input type="text" name="firstName" class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}" value="{{ old('firstName', $user->firstName) }}" required>
                 @if ($errors->has('firstName'))
                     <div class="invalid-feedback">
@@ -18,7 +18,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name</label>
+                <label for="lastName" class="form-label">Nom</label>
                 <input type="text" name="lastName" class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }}" value="{{ old('lastName', $user->lastName) }}" required>
                 @if ($errors->has('lastName'))
                     <div class="invalid-feedback">
@@ -47,7 +47,7 @@
                 @endif
             </div>
 
-            <button type="submit" class="btn btn-primary">Update User</button>
+            <button type="submit" class="btn btn-primary">MÀJ Commercial</button>
         </form>
     </div>
 @endsection

@@ -4,18 +4,18 @@
 <br>
 
     <div class="container">
-        <h2>Apartment Details</h2>
-        <p><strong>Apartment Number:</strong> {{ $apartment->ApartmentsNumber }}</p>
-        <p><strong>Size (sqm):</strong> {{ $apartment->SizeParSquareMeter }}</p>
-        <p><strong>Price per sqm:</strong> {{ $apartment->PriceParSquareMeter }}</p>
-        <p><strong>Total Price:</strong> {{ $apartment->TotalPrice }}</p>
-        <p><strong>Status:</strong>
+        <h2>Détails de l'appartement @if($apartment->Status !== 'Sold')    <a href="{{ route('orders.create', ['apartment_id' => $apartment->ApartmentsID]) }}" class="btn btn-success btn-sm ms-2">Réserver</a> @endif</h2> 
+        <p><strong>Numéro d'appartement:</strong> {{ $apartment->ApartmentsNumber }}</p>
+        <p><strong>Taille (m²):</strong> {{ $apartment->SizeParSquareMeter }}</p>
+        <p><strong>Prix ​​au m²:</strong> {{ $apartment->PriceParSquareMeter }}</p>
+        <p><strong>Prix ​​total:</strong> {{ $apartment->TotalPrice }}</p>
+        <p><strong>Statut:</strong>
              @if ($apartment->Status === 'Available')
-            <span class="badge bg-success">{{ $apartment->Status }}</span>
+            <span class="badge bg-success">Disponible</span>
         @elseif ($apartment->Status === 'Sold')
-            <span class="badge bg-danger">{{ $apartment->Status }}</span>
+            <span class="badge bg-danger">Vendu</span>
         @elseif ($apartment->Status === 'Reserved')
-            <span class="badge bg-warning">{{ $apartment->Status }}</span>
+            <span class="badge bg-warning">Réservé</span>
         @else
             {{ $apartment->Status }}
         @endif</p>
@@ -30,8 +30,7 @@
                 <button type="submit" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Are you sure you want to delete this apartment?')"><i class="fa-solid fa-trash-can"></i></button>
             </form>
             @endif
-            <a href="{{ route('orders.create', ['apartment_id' => $apartment->ApartmentsID]) }}" class="btn btn-success">Réserver</a>
-            <a href="{{ route('apartments.index') }}" class="btn btn-secondary btn-sm ms-2">Go back</a>
+            <a href="{{ route('apartments.index') }}" class="btn btn-secondary btn-sm ms-2">Retourner</a>
         </div>
     </div>
 @endsection

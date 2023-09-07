@@ -2,22 +2,22 @@
 
 @section('content')
     <div class="container">
-        <h1>Apartments List</h1>
+        <h1>Liste des appartements</h1>
         <div class="row">
             <div class="col-md-6 mb-4">
                 <!-- Search Bar and Filters -->
                 <form id="searchForm" action="{{ route('apartments.index') }}" method="GET" class="d-flex align-items-center">
                     <div class="input-group">
-                        <input type="text" name="search" class="form-control form-control-sm" placeholder="Search by apartment number">
+                        <input type="text" name="search" class="form-control form-control-sm" placeholder="Recherche par numéro d'appartement">
                     </div>
                     <select name="status" class="form-select form-select-sm ms-2">
-                        <option value="">All Status</option>
-                        <option value="Available">Available</option>
-                        <option value="Sold">Sold</option>
-                        <option value="Reserved">Reserved</option>
+                        <option value="">Tous les statuts</option>
+                        <option value="Available">Disponible</option>
+                        <option value="Sold">Vendu</option>
+                        <option value="Reserved">Réservé</option>
                     </select>
                     <input type="hidden" name="residence_id" value="{{ $residenceID }}">
-                    <a href="{{ route('apartments.index')  }}" class="btn btn-secondary btn-sm ms-2">Clear</a>
+                    <a href="{{ route('apartments.index')  }}" class="btn btn-secondary btn-sm ms-2">Clair</a>
                 </form>
                 
             </div>
@@ -34,22 +34,22 @@
             @foreach($apartments as $apartment)
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-header no-border"><h5 class="card-title">Apartment Number: {{ $apartment->ApartmentsNumber }}</h5></div>
+                        <div class="card-header no-border"><h5 class="card-title">Numéro d'appartement: {{ $apartment->ApartmentsNumber }}</h5></div>
                         <div class="card-body">
                             <p class="card-text">
                                 @if ($apartment->residence)
-                                    Residence Name: {{ $apartment->residence->ResidenceName }}<br>
+                                Nom de la résidence: {{ $apartment->residence->ResidenceName }}<br>
                                 @endif
-                                Size (sqm): {{ $apartment->SizeParSquareMeter }}<br>
-                                Price per sqm: {{ $apartment->PriceParSquareMeter }}<br>
-                                Total Price: {{ $apartment->TotalPrice }}<br>
-                                Status:
+                                Taille (m²): {{ $apartment->SizeParSquareMeter }}<br>
+                                Prix ​​au m²: {{ $apartment->PriceParSquareMeter }}<br>
+                                Prix ​​total: {{ $apartment->TotalPrice }}<br>
+                                Statut:
                                 @if ($apartment->Status === 'Available')
-                                    <span class="badge bg-success">{{ $apartment->Status }}</span>
+                                    <span class="badge bg-success">Disponible</span>
                                 @elseif ($apartment->Status === 'Sold')
-                                    <span class="badge bg-danger">{{ $apartment->Status }}</span>
+                                    <span class="badge bg-danger">Vendu</span>
                                 @elseif ($apartment->Status === 'Reserved')
-                                    <span class="badge bg-warning">{{ $apartment->Status }}</span>
+                                    <span class="badge bg-warning">Réservé</span>
                                 @else
                                     {{ $apartment->Status }}
                                 @endif
@@ -57,7 +57,7 @@
                             </p>
 
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('apartments.show', ['apartment' => $apartment->ApartmentsID]) }}" class="btn btn-primary">Show</a>
+                                <a href="{{ route('apartments.show', ['apartment' => $apartment->ApartmentsID]) }}" class="btn btn-primary">Afficher</a>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
         <ul class="pagination justify-content-center">
             @if ($apartments->onFirstPage())
                 <li class="page-item disabled">
-                    <span class="page-link" aria-hidden="true">&laquo; Previous</span>
+                    <span class="page-link" aria-hidden="true">&laquo; Précédent</span>
                 </li>
             @else
                 <li class="page-item">
@@ -94,7 +94,7 @@
                 </li>
             @else
                 <li class="page-item disabled">
-                    <span class="page-link" aria-hidden="true">Next &raquo;</span>
+                    <span class="page-link" aria-hidden="true">Suivant &raquo;</span>
                 </li>
             @endif
         </ul>

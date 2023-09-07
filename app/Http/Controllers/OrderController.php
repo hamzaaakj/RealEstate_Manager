@@ -25,9 +25,22 @@ class OrderController extends Controller
     
     public function create($apartment_id)
     {
-        // Récupérez l'appartement associé à l'ID (vous devrez définir la logique appropriée)
         $apartment = Apartement::find($apartment_id);
+        if($apartment->Status =='Sold'){
+            return abort(403, 'Accès interdit');
+        }
+        // Récupérez l'appartement associé à l'ID (vous devrez définir la logique appropriée)
+       
+         $user = auth()->user(); // Get the currently logged-in user
+    
+    // Check if the user is an admin
+    if ($user->is_admin === 1) {
+        // If the user is an admin, retrieve all clients
         $clients = Client::all();
+    } else {
+        // If the user is not an admin, retrieve clients with the same commercial value as the user's ID
+        $clients = Client::where('commercial', $user->id)->get();
+    }
         return view('reservations.create', compact('apartment','clients'));
     }
     
@@ -36,6 +49,8 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
+        $user = auth()->user(); // Get the currently logged-in user
+    
         $query = Order::query();
         $query->with(['apartment.residence', 'commerciall', 'client']);
     
@@ -45,12 +60,20 @@ class OrderController extends Controller
             $query->whereHas('client', function ($subQuery) use ($search) {
                 $subQuery->where('token', 'like', '%' . $search . '%');
             });
-
         }
-        $query->with(['apartment.residence', 'commerciall', 'client']);
-        $reservations = $query->paginate(20);
     
-        return view('reservations.index', compact('reservations'));}
+        // Check if the user is an admin
+        if ($user->is_admin === 1) {
+            // If the user is an admin, retrieve all clients
+            $reservations = $query->paginate(20);
+        } else {
+            // If the user is not an admin, retrieve clients with the same commercial value as the user's ID
+            $reservations = $query->where('commercial', $user->id)->paginate(20);
+        }
+    
+        return view('reservations.index', compact('reservations'));
+    }
+    
     
     public function show($id)
     {

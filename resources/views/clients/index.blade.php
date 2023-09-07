@@ -3,14 +3,14 @@
 @section('content')
 <div class="container">
     <h1>Clients</h1>
-    <a class="btn btn-primary" href="{{ route('clients.create') }}">Create New Client</a>
+    <a class="btn btn-primary" href="{{ route('clients.create') }}">Créer un nouveau client</a>
     <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Token</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Jeton</th>
+                <th>Prénom</th>
+                <th>Nom</th>
                 <th>Email</th>
                 <th>Telephone</th>
                 <th>Commercial</th>
@@ -28,12 +28,14 @@
                     <td>{{ $client->tele }}</td>
                     <td>{{ $client->user->firstName . ' ' . $client->user->lastName }}</td>
                     <td>
+                        @if(auth()->user()->is_admin === 1 || auth()->user()->id === $client->commercial)
                         <a class="btn btn-primary btn-sm" href="{{ route('clients.edit', $client->id) }}"><i class="fa-solid fa-user-pen"></i></a>
                         <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm ms-2"><i class="fa-solid fa-user-slash"></i></button>
                         </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
