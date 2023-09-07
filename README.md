@@ -82,7 +82,7 @@ These instructions will help you get a copy of the project up and running on you
 10. Start the development server:
 
     ```bash
-     npm run dev && php artisan serve
+      php artisan serve
 
 11. You can now access the site at :
 
