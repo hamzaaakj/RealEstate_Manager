@@ -84,11 +84,8 @@ These instructions will help you get a copy of the project up and running on you
     ```bash
       php artisan serve
 
-11. You can now access the site at :
+11. You can now access the site at 'http://localhost:8000' .
 
-  ```bash
-   http://localhost:8000
-###############
 ### Login Credentials
 
 Use the following login credentials to access the admin and commercial interfaces:
