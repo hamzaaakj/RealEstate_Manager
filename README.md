@@ -40,7 +40,7 @@ These instructions will help you get a copy of the project up and running on you
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/real-estate-manager.git
+   https://github.com/boucettaRachid/RealEstate_Manager.git
 
 2. Change directory to the project folder:
     ```bash
