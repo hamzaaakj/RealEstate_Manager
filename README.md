@@ -69,12 +69,12 @@ These instructions will help you get a copy of the project up and running on you
    ```bash
     php artisan db:seed --class=CreateUsersSeeder
    
-8.Install Node.js dependencies:
+8. Install Node.js dependencies:
 
    ```bash
     npm install
    
-9.Build assets for development:
+9. Build assets for development:
 
    ```bash
     npm run dev
