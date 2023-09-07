@@ -65,26 +65,26 @@ var soldeApartmentsData = @json($apartmentsPerResidence);
 
 // Extraire les noms de résidence pour les appartements vendus ("solde")
 var residenceNames = soldeApartmentsData.map(function(apartment) {
-return apartment.ResidenceName;
+    return apartment.ResidenceName;
 });
 
 // Extraire le nombre d'appartements vendus ("solde") par résidence
 var apartmentCounts = soldeApartmentsData.map(function(apartment) {
-return apartment.ApartmentCount;
+    return apartment.ApartmentCount;
 });
 
 // Data for the line chart
 var data = {
-labels: residenceNames,
-datasets: [{
-label: 'Nombre d\'appartements vendus par résidence',
-data: apartmentCounts,
-fill: false,
-borderColor: 'rgba(75, 192, 192, 1)',
-borderWidth: 2,
-pointRadius: 5,
-pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-}]
+    labels: residenceNames,
+    datasets: [{
+        label: 'Nombre d\'appartements vendus par résidence',
+        data: apartmentCounts,
+        fill: false,
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 2,
+        pointRadius: 5,
+        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+    }]
 };
 
 // Get the canvas element
@@ -92,16 +92,24 @@ var ctx = document.getElementById('residenceApartmentChart').getContext('2d');
 
 // Create the line chart
 var apartmentChart = new Chart(ctx, {
-type: 'line',
-data: data,
-options: {
-scales: {
-y: {
-beginAtZero: true,
-},
-},
-},
+    type: 'line',
+    data: data,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        if (Number.isInteger(value)) {
+                            return value; // Display only whole numbers
+                        }
+                    }
+                }
+            }
+        }
+    }
 });
+
 </script>
 
 
