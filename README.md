@@ -43,29 +43,36 @@ These instructions will help you get a copy of the project up and running on you
    git clone https://github.com/yourusername/real-estate-manager.git
 
 2. Change directory to the project folder:
-    ``` cd real-estate-manager
+    ```bash
+     cd real-estate-manager
 3. Install Composer dependencies:
 
-    ``` composer install
+    ```bash
+     composer install
 4. Create a copy of the .env.example file and configure your environment variables, including database connection settings:
 
-    ``` cp .env.example .env
+    ```bash
+     cp .env.example .env
 
 5. Generate an application key:
 
-    ``` php artisan key:generate
+    ```bash
+     php artisan key:generate
 
 6. Run migrations to set up the database schema:
 
-    ``` php artisan migrate
+   ```bash
+    php artisan migrate
 
 7. Start the development server:
 
-    ``` npm run dev && php artisan serve
+    ```bash
+     npm run dev && php artisan serve
 
 8. You can now access the site at :
 
-  ``` http://localhost:8000
+  ```bash
+   http://localhost:8000
 
 
 ### Usage
