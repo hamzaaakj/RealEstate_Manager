@@ -40,7 +40,7 @@ These instructions will help you get a copy of the project up and running on you
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/real-estate-manager.git
+   https://github.com/boucettaRachid/RealEstate_Manager.git
 
 2. Change directory to the project folder:
     ```bash
@@ -63,16 +63,42 @@ These instructions will help you get a copy of the project up and running on you
 
    ```bash
     php artisan migrate
+   
+7. Seed the database with initial data (including users) using the following command:
 
-7. Start the development server:
+   ```bash
+    php artisan db:seed --class=CreateUsersSeeder
+   
+8. Install Node.js dependencies:
+
+   ```bash
+    npm install
+   
+9. Build assets for development:
+
+   ```bash
+    npm run dev
+
+10. Start the development server:
 
     ```bash
-     npm run dev && php artisan serve
+      php artisan serve
 
-8. You can now access the site at :
+11. You can now access the site at 'http://localhost:8000' .
 
-  ```bash
-   http://localhost:8000
+### Login Credentials
+
+Use the following login credentials to access the admin and commercial interfaces:
+
+**Admin:**
+
+- Email: admin@admin.com
+- Password: 1111
+
+**Commercial User:**
+
+- Email: normal@user.com
+- Password: 1111
 
 
 ### Usage
