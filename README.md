@@ -89,6 +89,20 @@ These instructions will help you get a copy of the project up and running on you
   ```bash
    http://localhost:8000
 
+### Login Credentials
+
+Use the following login credentials to access the admin and commercial interfaces:
+
+**Admin:**
+
+- Email: admin@admin.com
+- Password: 1111
+
+**Commercial User:**
+
+- Email: normal@user.com
+- Password: 1111
+
 
 ### Usage
 
